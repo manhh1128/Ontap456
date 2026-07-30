@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>跟木木学汉语 · Luyện tập Bài 4-5-6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=Literata:ital,wght@0,500;0,600;0,700;1,500&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EEE0;
+    --paper-deep:#E7DCC0;
+    --paper-line:#cfc09a;
+    --ink:#242220;
+    --ink-soft:#5b5346;
+    --indigo:#2E3B54;
+    --indigo-soft:#4a5a78;
+    --seal:#AE3B34;
+    --seal-dark:#8c2d28;
+    --gold:#B7902E;
+    --jade:#3E6E5C;
+    --wrong:#9C4A3C;
+    --radius:14px;
+    --shadow: 0 8px 24px rgba(46,59,84,0.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 90% 0%, rgba(183,144,46,0.08), transparent 45%),
+      radial-gradient(circle at 0% 100%, rgba(46,59,84,0.06), transparent 40%),
+      var(--paper);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Be Vietnam Pro', sans-serif;
+    min-height:100vh;
+  }
+  .app{max-width:1180px;margin:0 auto;padding:28px 20px 80px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:flex;align-items:center;gap:28px;
+    padding:26px 30px;margin-bottom:26px;
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius);
+    background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.15));
+    position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(46,59,84,0.035) 28px);
+    pointer-events:none;
+  }
+  .hero-glyph{
+    font-family:'Ma Shan Zheng', cursive;
+    font-size:92px;line-height:1;color:var(--indigo);
+    flex-shrink:0;
+    text-shadow:2px 2px 0 rgba(174,59,52,0.15);
+  }
+  .hero-text h1{
+    font-family:'Literata', serif;
+    font-size:28px;margin:0 0 4px;color:var(--indigo);letter-spacing:0.2px;
+  }
+  .hero-text .zh{font-family:'Noto Serif SC',serif;font-weight:700;color:var(--seal);font-size:17px;}
+  .hero-text p{margin:6px 0 0;color:var(--ink-soft);font-size:14.5px;max-width:60ch;line-height:1.55;}
+
+  /* stamp rack */
+  .stamp-rack{
+    margin-left:auto;display:flex;gap:10px;flex-shrink:0;
+  }
+  .stamp{
+    width:58px;height:58px;border-radius:6px;
+    border:2.5px solid var(--seal);color:var(--seal);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'Noto Serif SC',serif;font-weight:700;font-size:11px;
+    transform:rotate(-6deg);opacity:0.25;transition:all .35s ease;
+    background:rgba(174,59,52,0.03);
+  }
+  .stamp.earned{opacity:1;transform:rotate(-6deg) scale(1);box-shadow:0 3px 8px rgba(174,59,52,0.25);}
+  .stamp .num{font-size:15px;}
+
+  /* ---------- NAV (book index tabs) ---------- */
+  .layout{display:flex;gap:22px;align-items:flex-start;}
+  .tabs{
+    display:flex;flex-direction:column;gap:0;flex-shrink:0;width:190px;
+  }
+  .tab-btn{
+    font-family:'Literata',serif;font-weight:600;font-size:14.5px;
+    text-align:left;background:var(--paper-deep);color:var(--ink-soft);
+    border:1px solid var(--paper-line);border-right:none;
+    padding:14px 16px;cursor:pointer;
+    border-radius:10px 0 0 10px;
+    position:relative;left:0;transition:all .2s ease;
+    margin-bottom:6px;
+  }
+  .tab-btn .zh-tag{display:block;font-family:'Noto Serif SC',serif;font-size:12px;color:var(--seal);margin-bottom:2px;opacity:0.75;}
+  .tab-btn:hover{left:-4px;}
+  .tab-btn.active{
+    background:var(--paper);color:var(--indigo);left:-10px;
+    border-color:var(--indigo);
+    box-shadow:var(--shadow);
+    z-index:2;
+  }
+  @media (max-width:820px){
+    .layout{flex-direction:column;}
+    .tabs{flex-direction:row;width:100%;overflow-x:auto;gap:8px;padding-bottom:6px;}
+    .tab-btn{border-radius:10px;border-right:1px solid var(--paper-line);white-space:nowrap;left:0 !important;margin-bottom:0;}
+    .tab-btn.active{left:0 !important;transform:translateY(-4px);}
+  }
+
+  /* ---------- PAGE PANEL ---------- */
+  .page{
+    flex:1;min-width:0;
+    background:var(--paper);
+    border:1px solid var(--indigo);
+    border-radius:0 12px 12px 12px;
+    box-shadow:var(--shadow);
+    padding:30px 34px;
+    position:relative;
+  }
+  .page::after{
+    content:"";position:absolute;inset:6px;
+    border:1px solid rgba(46,59,84,0.18);border-radius:8px;pointer-events:none;
+  }
+  .section-head{margin-bottom:18px;}
+  .section-head h2{font-family:'Literata',serif;color:var(--indigo);font-size:22px;margin:0 0 4px;}
+  .section-head .sub{color:var(--ink-soft);font-size:14px;line-height:1.5;}
+  .eyebrow{
+    font-family:'Noto Serif SC',serif;color:var(--seal);font-weight:700;font-size:13px;
+    letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:4px;
+  }
+
+  /* mode switch pills within a module */
+  .mode-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+  .pill{
+    border:1px solid var(--indigo-soft);background:transparent;color:var(--indigo);
+    padding:7px 14px;border-radius:99px;font-size:13px;font-family:'Be Vietnam Pro';font-weight:600;
+    cursor:pointer;transition:all .15s ease;
+  }
+  .pill.active{background:var(--indigo);color:var(--paper);}
+  .pill:hover:not(.active){background:rgba(46,59,84,0.08);}
+
+  /* ---------- FLASHCARD ---------- */
+  .flash-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;}
+  .flashcard{
+    width:100%;max-width:420px;height:230px;perspective:1200px;cursor:pointer;
+  }
+  .flash-inner{position:relative;width:100%;height:100%;transition:transform .5s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;}
+  .flashcard.flipped .flash-inner{transform:rotateY(180deg);}
+  .flash-face{
+    position:absolute;inset:0;backface-visibility:hidden;
+    border-radius:12px;border:1.5px solid var(--indigo);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    background:linear-gradient(160deg,#fff,var(--paper));
+    box-shadow:0 6px 20px rgba(46,59,84,0.15);padding:20px;text-align:center;
+  }
+  .flash-face.back{transform:rotateY(180deg);}
+  .flash-hanzi{font-family:'Noto Serif SC',serif;font-weight:700;font-size:52px;color:var(--ink);}
+  .flash-pinyin{font-size:17px;color:var(--seal);font-weight:600;}
+  .flash-lesson{font-size:11.5px;color:var(--ink-soft);letter-spacing:0.5px;text-transform:uppercase;}
+  .flash-meaning{font-family:'Literata',serif;font-size:22px;color:var(--indigo);font-weight:600;}
+  .flash-hint{font-size:12.5px;color:var(--ink-soft);}
+  .flash-controls{display:flex;gap:10px;align-items:center;}
+
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    font-family:'Be Vietnam Pro';font-weight:600;font-size:13.5px;
+    border-radius:8px;border:1.5px solid var(--indigo);background:var(--indigo);color:var(--paper);
+    padding:10px 18px;cursor:pointer;transition:all .15s ease;
+  }
+  .btn:hover{background:var(--indigo-soft);border-color:var(--indigo-soft);}
+  .btn.ghost{background:transparent;color:var(--indigo);}
+  .btn.ghost:hover{background:rgba(46,59,84,0.08);}
+  .btn:disabled{opacity:0.4;cursor:not-allowed;}
+  .icon-btn{
+    width:38px;height:38px;border-radius:50%;border:1.5px solid var(--indigo);background:transparent;color:var(--indigo);
+    cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;
+  }
+  .icon-btn:hover{background:rgba(46,59,84,0.08);}
+
+  /* ---------- QUIZ ---------- */
+  .quiz-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:13px;color:var(--ink-soft);}
+  .quiz-meta .score{font-weight:700;color:var(--seal);}
+  .progress-track{height:6px;background:var(--paper-deep);border-radius:99px;overflow:hidden;margin-bottom:22px;}
+  .progress-fill{height:100%;background:var(--seal);transition:width .3s ease;}
+  .prompt-card{
+    border:1.5px solid var(--paper-line);background:rgba(255,255,255,0.5);
+    border-radius:12px;padding:22px 24px;margin-bottom:18px;
+  }
+  .prompt-hanzi{font-family:'Noto Serif SC',serif;font-size:38px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+  .prompt-text{font-family:'Literata',serif;font-size:19px;color:var(--indigo);font-weight:600;line-height:1.5;}
+  .prompt-note{font-size:13px;color:var(--ink-soft);margin-top:6px;}
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:600px){.options{grid-template-columns:1fr;}}
+  .opt{
+    border:1.5px solid var(--indigo-soft);border-radius:10px;background:#fff;
+    padding:13px 16px;text-align:left;cursor:pointer;font-family:'Be Vietnam Pro';font-size:14.5px;color:var(--ink);
+    transition:all .15s ease;
+  }
+  .opt .opt-zh{font-family:'Noto Serif SC',serif;font-weight:700;font-size:17px;color:var(--indigo);display:block;margin-bottom:2px;}
+  .opt:hover:not(.locked){border-color:var(--indigo);background:rgba(46,59,84,0.05);}
+  .opt.correct{background:rgba(62,110,92,0.15);border-color:var(--jade);}
+  .opt.wrong{background:rgba(156,74,60,0.13);border-color:var(--wrong);}
+  .opt.locked{cursor:default;}
+  .feedback{
+    margin-top:16px;padding:14px 16px;border-radius:10px;font-size:14px;line-height:1.55;
+    display:none;
+  }
+  .feedback.show{display:block;}
+  .feedback.ok{background:rgba(62,110,92,0.12);color:var(--jade);border:1px solid rgba(62,110,92,0.3);}
+  .feedback.no{background:rgba(156,74,60,0.1);color:var(--wrong);border:1px solid rgba(156,74,60,0.3);}
+  .actions-row{display:flex;justify-content:space-between;align-items:center;margin-top:20px;}
+
+  /* result screen */
+  .result{text-align:center;padding:30px 10px;}
+  .result-seal{
+    width:120px;height:120px;border-radius:8px;border:5px solid var(--seal);color:var(--seal);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 18px;
+    transform:rotate(-4deg);font-family:'Noto Serif SC',serif;
+  }
+  .result-seal .big{font-size:30px;font-weight:900;}
+  .result-seal .small{font-size:11px;font-weight:700;}
+  .result h3{font-family:'Literata',serif;color:var(--indigo);font-size:22px;margin:0 0 8px;}
+  .result p{color:var(--ink-soft);font-size:14.5px;margin:0 0 18px;}
+
+  /* dialogue ordering */
+  .dlg-pool, .dlg-answer{
+    border:1.5px dashed var(--paper-line);border-radius:10px;padding:14px;min-height:64px;
+    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;
+  }
+  .dlg-answer{border-style:solid;background:rgba(255,255,255,0.4);}
+  .dlg-chip{
+    font-family:'Noto Serif SC',serif;font-size:15px;color:var(--indigo);background:#fff;
+    border:1.5px solid var(--indigo-soft);border-radius:8px;padding:9px 13px;cursor:pointer;
+  }
+  .dlg-chip:hover{background:rgba(46,59,84,0.06);}
+  .dlg-chip.placed{opacity:0.35;cursor:default;}
+  .dlg-line-list{display:flex;flex-direction:column;gap:10px;margin:16px 0;}
+  .dlg-line{
+    border:1px solid var(--paper-line);border-radius:8px;padding:10px 14px;background:rgba(255,255,255,0.5);
+    font-size:14px;
+  }
+  .dlg-line .zh{font-family:'Noto Serif SC',serif;font-size:17px;color:var(--ink);}
+  .dlg-line .py{color:var(--seal);font-size:13px;}
+  .dlg-line .vi{color:var(--ink-soft);font-size:13px;margin-top:2px;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--indigo);color:var(--paper);margin-right:8px;}
+
+  /* number module */
+  .num-display{
+    font-family:'Literata',serif;font-size:52px;font-weight:700;color:var(--indigo);
+    text-align:center;margin:6px 0 4px;
+  }
+  .num-range-tag{text-align:center;color:var(--ink-soft);font-size:13px;margin-bottom:16px;}
+
+  footer.note{margin-top:26px;text-align:center;color:var(--ink-soft);font-size:12.5px;line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="hero">
+    <div class="hero-glyph">木</div>
+    <div class="hero-text">
+      <h1>Luyện tập cùng Mộc Mộc <span class="zh">跟木木学汉语</span></h1>
+      <p>Ôn luyện trọn bộ nội dung Bài 4 · Bài 5 · Bài 6: từ vựng, pinyin, bài khóa, cách ghép số và ngữ pháp — mỗi câu trả lời đúng được "đóng dấu" vào sổ luyện tập của bạn.</p>
+    </div>
+    <div class="stamp-rack" id="stampRack"></div>
+  </div>
+
+  <div class="layout">
+    <div class="tabs" id="tabs"></div>
+    <div class="page" id="page"></div>
+  </div>
+
+  <footer class="note">木木 · Dữ liệu bài tập được biên soạn từ nội dung bài giảng Bài 4–5–6. Điểm số chỉ lưu tạm trong phiên làm việc này.</footer>
+</div>
+
+<script>
+/* ============================================================
+   DATA — trích từ bài giảng Bài 4, 5, 6
+============================================================ */
+const VOCAB = [
+  {zh:"天", py:"tiān", vi:"ngày, trời", bai:4},
+  {zh:"今天", py:"jīntiān", vi:"hôm nay", bai:4},
+  {zh:"昨天", py:"zuótiān", vi:"hôm qua", bai:4},
+  {zh:"明天", py:"míngtiān", vi:"ngày mai", bai:4},
+  {zh:"星期", py:"xīngqī", vi:"tuần, thứ", bai:4},
+  {zh:"几", py:"jǐ", vi:"mấy? (hỏi số lượng)", bai:4},
+  {zh:"学校", py:"xuéxiào", vi:"trường, trường học", bai:4},
+  {zh:"回", py:"huí", vi:"về, trở về", bai:4},
+  {zh:"银行", py:"yínháng", vi:"ngân hàng", bai:4},
+  {zh:"钱", py:"qián", vi:"tiền", bai:4},
+  {zh:"去", py:"qù", vi:"đi", bai:4},
+  {zh:"再见", py:"zàijiàn", vi:"tạm biệt", bai:4},
+  {zh:"对不起", py:"duìbuqǐ", vi:"xin lỗi", bai:4},
+  {zh:"没关系", py:"méi guānxi", vi:"không sao đâu", bai:4},
+  {zh:"天安门", py:"Tiān'ānmén", vi:"Thiên An Môn", bai:4},
+  {zh:"是", py:"shì", vi:"là", bai:4},
+  {zh:"在", py:"zài", vi:"ở", bai:4},
+  {zh:"哪儿", py:"nǎr", vi:"đâu? ở đâu?", bai:4},
+  {zh:"这儿", py:"zhèr", vi:"ở đây", bai:4},
+  {zh:"那儿", py:"nàr", vi:"ở kia, ở đó", bai:4},
+  {zh:"这", py:"zhè", vi:"đây, này", bai:4},
+  {zh:"那", py:"nà", vi:"kia, đó", bai:4},
+  {zh:"哪", py:"nǎ", vi:"nào?", bai:4},
+  {zh:"学", py:"xué", vi:"học", bai:4},
+  {zh:"对", py:"duì", vi:"đúng", bai:4},
+  {zh:"信", py:"xìn", vi:"thư", bai:4},
+  {zh:"邮局", py:"yóujú", vi:"bưu điện", bai:4},
+  {zh:"老师", py:"lǎoshī", vi:"giáo viên, thầy/cô giáo", bai:5},
+  {zh:"您", py:"nín", vi:"ngài (kính trọng)", bai:5},
+  {zh:"请", py:"qǐng", vi:"mời", bai:5},
+  {zh:"进", py:"jìn", vi:"vào", bai:5},
+  {zh:"坐", py:"zuò", vi:"ngồi", bai:5},
+  {zh:"喝", py:"hē", vi:"uống", bai:5},
+  {zh:"茶", py:"chá", vi:"trà", bai:5},
+  {zh:"水", py:"shuǐ", vi:"nước", bai:5},
+  {zh:"谢谢", py:"xièxie", vi:"cảm ơn", bai:5},
+  {zh:"不客气", py:"bú kèqi", vi:"không có gì", bai:5},
+  {zh:"工作", py:"gōngzuò", vi:"công việc, làm việc", bai:5},
+  {zh:"身体", py:"shēntǐ", vi:"sức khỏe, cơ thể", bai:5},
+  {zh:"日", py:"rì", vi:"mặt trời, ngày", bai:5},
+  {zh:"问", py:"wèn", vi:"hỏi", bai:6},
+  {zh:"姓", py:"xìng", vi:"họ (làm họ)", bai:6},
+  {zh:"贵姓", py:"guìxìng", vi:"quý danh (hỏi họ)", bai:6},
+  {zh:"叫", py:"jiào", vi:"gọi, tên là", bai:6},
+  {zh:"名字", py:"míngzi", vi:"tên", bai:6},
+  {zh:"学习", py:"xuéxí", vi:"học, học tập", bai:6},
+  {zh:"汉字", py:"Hànzì", vi:"chữ Hán", bai:6},
+  {zh:"发音", py:"fāyīn", vi:"phát âm", bai:6},
+  {zh:"什么", py:"shénme", vi:"gì, cái gì?", bai:6},
+  {zh:"书", py:"shū", vi:"sách", bai:6},
+  {zh:"谁", py:"shéi", vi:"ai?", bai:6},
+  {zh:"的", py:"de", vi:"của (sở hữu)", bai:6},
+  {zh:"杂志", py:"zázhì", vi:"tạp chí", bai:6},
+  {zh:"朋友", py:"péngyou", vi:"bạn bè", bai:6},
+];
+
+const DIALOGUE = [
+  {zh:"今天星期几?", py:"Jīntiān xīngqi jǐ?", vi:"Hôm nay thứ mấy?", who:"A"},
+  {zh:"今天星期二。", py:"Jīntiān xīngqi'èr.", vi:"Hôm nay thứ Ba.", who:"B"},
+  {zh:"你去哪儿?", py:"Nǐ qù nǎr?", vi:"Bạn đi đâu đấy?", who:"A"},
+  {zh:"我去天安门，你去不去?", py:"Wǒ qù tiān'ānmén, nǐ qù bú qù?", vi:"Tôi đi Thiên An Môn, bạn có đi không?", who:"B"},
+  {zh:"不去, 我回学校。", py:"Bú qù, wǒ huí xuéxiào.", vi:"Không đi, tôi về trường.", who:"A"},
+  {zh:"再见!", py:"Zàijiàn!", vi:"Tạm biệt!", who:"B"},
+  {zh:"再见!", py:"Zàijiàn!", vi:"Tạm biệt!", who:"A"},
+];
+
+const PINYIN_RULES = [
+  {q:"Âm tiết \"ua\" khi đứng một mình (không có thanh mẫu đứng trước) được viết là gì?", opts:["wa","ua","oa","va"], correct:0, note:"Quy tắc: âm tiết bắt đầu bằng vận mẫu [u] thì [u] được viết thành [w]."},
+  {q:"Âm tiết \"uo\" khi đứng một mình được viết là gì?", opts:["wo","uo","vo","ow"], correct:0, note:"ua→wa, uo→wo, uai→wai, uan→wan, uang→wang..."},
+  {q:"Âm tiết \"uan\" khi đứng một mình được viết là gì?", opts:["wan","uan","waan","oan"], correct:0, note:"Quy tắc u → w."},
+  {q:"Âm tiết \"uang\" khi đứng một mình được viết là gì?", opts:["wang","uang","vang","wan"], correct:0, note:"Quy tắc u → w."},
+  {q:"Âm tiết \"ueng\" khi đứng một mình được viết là gì?", opts:["weng","ueng","veng","wong"], correct:0, note:"Quy tắc u → w."},
+  {q:"Âm tiết \"uei\" khi đứng một mình được viết là gì?", opts:["wei","uei","vei","woi"], correct:0, note:"Quy tắc u → w."},
+  {q:"\"zi\" — vận mẫu [i] trong âm tiết này đọc là gì?", opts:["ư","i"], correct:0, note:"Sau 7 thanh mẫu z, c, s, zh, ch, sh, r thì [i] đọc thành \"ư\"."},
+  {q:"\"chi\" — vận mẫu [i] trong âm tiết này đọc là gì?", opts:["ư","i"], correct:0, note:"ch nằm trong nhóm 7 thanh mẫu đặc biệt."},
+  {q:"\"shi\" — vận mẫu [i] trong âm tiết này đọc là gì?", opts:["ư","i"], correct:0, note:"sh nằm trong nhóm 7 thanh mẫu đặc biệt."},
+  {q:"\"ri\" — vận mẫu [i] trong âm tiết này đọc là gì?", opts:["ư","i"], correct:0, note:"r nằm trong nhóm 7 thanh mẫu đặc biệt."},
+  {q:"\"ji\" — vận mẫu [i] trong âm tiết này đọc là gì?", opts:["i","ư"], correct:0, note:"j không thuộc nhóm z,c,s,zh,ch,sh,r nên [i] vẫn đọc là \"i\"."},
+  {q:"\"xi\" — vận mẫu [i] trong âm tiết này đọc là gì?", opts:["i","ư"], correct:0, note:"x không thuộc nhóm 7 thanh mẫu đặc biệt."},
+  {q:"\"bi\" — vận mẫu [i] trong âm tiết này đọc là gì?", opts:["i","ư"], correct:0, note:"b không thuộc nhóm 7 thanh mẫu đặc biệt."},
+  {q:"Giữa hai âm tiết trong \"Tiān'ānmén\" (天安门) có dùng dấu cách âm [’] không?", opts:["Có, vì âm tiết sau bắt đầu bằng [a]","Không cần"], correct:0, note:"Khi âm tiết đứng sau bắt đầu bằng a/o/e và liền sau âm tiết khác, dùng dấu [’] để tránh nhầm lẫn cách đọc."},
+  {q:"Giữa hai âm tiết trong \"bǐ'àn\" (彼岸) có dùng dấu cách âm [’] không?", opts:["Có, vì âm tiết sau bắt đầu bằng [a]","Không cần"], correct:0, note:"Âm tiết thứ 2 bắt đầu bằng [a] nên cần dấu cách âm."},
+  {q:"Giữa hai âm tiết trong \"xīngqī\" có cần dấu cách âm [’] không?", opts:["Không cần, vì âm tiết sau không bắt đầu bằng a/o/e","Có"], correct:0, note:"qī bắt đầu bằng phụ âm [q] nên không gây nhầm lẫn, không cần dấu cách âm."},
+];
+
+// V-不-V bank (câu hỏi chính phản)
+const VBUV = [
+  {base:"你去吗？", correct:"你去不去？", wrong:["你不去去？","你去去不？","你不去不去？"], vi:"Bạn có đi không?"},
+  {base:"这个大吗？", correct:"这个大不大？", wrong:["这个不大大？","这个大大不？","这个不不大？"], vi:"Cái này có to không?"},
+  {base:"你是老师吗？", correct:"你是不是老师？", wrong:["你不是是老师？","你是老师不是？","你是是不老师？"], vi:"Bạn có phải là giáo viên không?"},
+  {base:"你对吗？", correct:"你对不对？", wrong:["你不对对？","你对对不？","你不对不对？"], vi:"Bạn đúng không?"},
+  {base:"你走吗？", correct:"你走不走？", wrong:["你不走走？","你走走不？","你不走不走？"], vi:"Bạn có đi (rời đi) không?"},
+  {base:"你做吗？", correct:"你做不做？", wrong:["你不做做？","你做做不？","你不做不做？"], vi:"Bạn có làm không?"},
+  {base:"你喝吗？", correct:"你喝不喝？", wrong:["你不喝喝？","你喝喝不？","你不喝不喝？"], vi:"Bạn có uống không?"},
+  {base:"你坐吗？", correct:"你坐不坐？", wrong:["你不坐坐？","你坐坐不？","你不坐不坐？"], vi:"Bạn có ngồi không?"},
+  {base:"你进吗？", correct:"你进不进？", wrong:["你不进进？","你进进不？","你不进不进？"], vi:"Bạn có vào không?"},
+  {base:"你身体好吗？", correct:"你身体好不好？", wrong:["你身体不好好？","你身体好好不？","你不身体好？"], vi:"Sức khỏe của bạn tốt không?"},
+];
+
+// Câu "shì" (khẳng định / phủ định / nghi vấn)
+const SHI_BANK = [
+  {vi:"Tôi là giáo viên.", correct:"我是老师。", wrong:["我不是老师。","我是不是老师？","我老师是。"]},
+  {vi:"Tôi không phải là giáo viên.", correct:"我不是老师。", wrong:["我是老师。","我不老师是。","我是不老师。"]},
+  {vi:"Bạn là giáo viên hả? (cách 1)", correct:"你是老师吗？", wrong:["你是不老师吗？","你不是老师。","你是老师不是吗？"]},
+  {vi:"Bạn là giáo viên hả? (cách 2 — chính phản)", correct:"你是不是老师？", wrong:["你是不是老师吗？","你不是是老师？","你是老师是不是吗？"]},
+  {vi:"Đây là mẹ tôi.", correct:"这是我妈妈。", wrong:["那是我妈妈。","我是这妈妈。","这我是妈妈。"]},
+  {vi:"Kia là ba tôi.", correct:"那是我爸爸。", wrong:["这是我爸爸。","我那是爸爸。","那我是爸爸。"]},
+  {vi:"Bạn là người nước nào?", correct:"你是哪国人？", wrong:["你是什么国人？","你哪是国人？","你是谁国人？"]},
+];
+
+// Đại từ nghi vấn
+const QWORDS = [
+  {sentence:"你去___？", vi:"Bạn đi đâu?", correct:"哪儿", opts:["哪儿","什么","谁","几"]},
+  {sentence:"今天星期___？", vi:"Hôm nay thứ mấy?", correct:"几", opts:["几","什么","哪儿","谁"]},
+  {sentence:"这是___书？", vi:"Đây là sách gì?", correct:"什么", opts:["什么","谁","哪","几"]},
+  {sentence:"这是___的书？", vi:"Đây là sách của ai?", correct:"谁", opts:["谁","什么","哪儿","几"]},
+  {sentence:"你叫___名字？", vi:"Bạn tên là gì?", correct:"什么", opts:["什么","谁","哪儿","几"]},
+  {sentence:"你想喝___？", vi:"Bạn muốn uống gì?", correct:"什么", opts:["什么","谁","哪","几"]},
+  {sentence:"你想喝___茶？", vi:"Bạn muốn uống trà gì?", correct:"什么", opts:["什么","哪","谁","几"]},
+  {sentence:"你是___国人？", vi:"Bạn là người nước nào?", correct:"哪", opts:["哪","哪儿","什么","谁"]},
+  {sentence:"我妈妈在___？", vi:"Mẹ tôi ở đâu?", correct:"哪儿", opts:["哪儿","什么","谁","哪"]},
+];
+
+/* ============================================================
+   SỐ ĐẾM — thuật toán ghép số đúng theo quy tắc bài giảng
+============================================================ */
+const DIGITS = ['零','一','二','三','四','五','六','七','八','九'];
+function numberToChinese(n){
+  if(n>=1 && n<=10) return DIGITS[n] + (n===10?'':'') ;
+  if(n>=11 && n<=19) return '十' + (n===10?'':DIGITS[n-10]);
+  if(n>=20 && n<=99){
+    const tens=Math.floor(n/10), unit=n%10;
+    return DIGITS[tens]+'十'+(unit===0?'':DIGITS[unit]);
+  }
+  if(n>=100 && n<=999){
+    const hundreds=Math.floor(n/100), rem=n%100, tens=Math.floor(rem/10), unit=rem%10;
+    if(rem===0) return DIGITS[hundreds]+'百';
+    if(tens===0) return DIGITS[hundreds]+'百零'+DIGITS[unit];
+    if(unit===0) return DIGITS[hundreds]+'百'+DIGITS[tens]+'十';
+    return DIGITS[hundreds]+'百'+DIGITS[tens]+'十'+DIGITS[unit];
+  }
+  return String(n);
+}
+function randInt(a,b){ return a + Math.floor(Math.random()*(b-a+1)); }
+
+/* ============================================================
+   ENGINE STATE
+============================================================ */
+const MODULES = [
+  {id:'tuvung', tag:'词汇', label:'Từ vựng'},
+  {id:'pinyin', tag:'拼音', label:'Pinyin'},
+  {id:'baikhoa', tag:'课文', label:'Bài khóa'},
+  {id:'sodem', tag:'数字', label:'Số đếm'},
+  {id:'nguphap', tag:'语法', label:'Ngữ pháp'},
+];
+let stamps = {tuvung:0, pinyin:0, baikhoa:0, sodem:0, nguphap:0};
+let activeModule = 'tuvung';
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function pick(arr,n){ return shuffle(arr).slice(0,n); }
+
+function renderStampRack(){
+  const rack = document.getElementById('stampRack');
+  rack.innerHTML = MODULES.map(m=>{
+    const n = stamps[m.id];
+    return `<div class="stamp ${n>0?'earned':''}" title="${m.label}"><span>${m.tag}</span><span class="num">${n}</span></div>`;
+  }).join('');
+}
+function addStamp(moduleId){ stamps[moduleId]++; renderStampRack(); }
+
+function renderTabs(){
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = MODULES.map(m=>`
+    <button class="tab-btn ${activeModule===m.id?'active':''}" data-mod="${m.id}">
+      <span class="zh-tag">${m.tag}</span>${m.label}
+    </button>
+  `).join('');
+  tabs.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ activeModule = btn.dataset.mod; renderTabs(); renderPage(); });
+  });
+}
+
+function renderPage(){
+  const page = document.getElementById('page');
+  if(activeModule==='tuvung') renderVocab(page);
+  else if(activeModule==='pinyin') renderPinyin(page);
+  else if(activeModule==='baikhoa') renderDialogue(page);
+  else if(activeModule==='sodem') renderNumbers(page);
+  else if(activeModule==='nguphap') renderGrammar(page);
+}
+
+/* ------------------------------------------------------------
+   GENERIC MCQ QUIZ RUNNER
+   items: array of {prompt (html), promptHanzi(optional), options:[strings or {zh,vi}], correctIndex, note}
+------------------------------------------------------------ */
+function runQuiz(container, items, moduleId, opts={}){
+  let idx = 0, score = 0, locked = false;
+  const total = items.length;
+
+  function renderQuestion(){
+    locked = false;
+    const it = items[idx];
+    container.innerHTML = `
+      <div class="quiz-meta">
+        <span>Câu ${idx+1} / ${total}</span>
+        <span class="score">Điểm: ${score}</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" style="width:${(idx/total)*100}%"></div></div>
+      <div class="prompt-card">
+        ${it.promptHanzi? `<div class="prompt-hanzi">${it.promptHanzi}</div>`:''}
+        <div class="prompt-text">${it.prompt}</div>
+        ${it.promptNote? `<div class="prompt-note">${it.promptNote}</div>`:''}
+      </div>
+      <div class="options" id="optWrap"></div>
+      <div class="feedback" id="fb"></div>
+      <div class="actions-row">
+        <button class="btn ghost" id="skipBtn">Bỏ qua</button>
+        <button class="btn" id="nextBtn" disabled>Câu tiếp theo →</button>
+      </div>
+    `;
+    const optWrap = container.querySelector('#optWrap');
+    it.options.forEach((o,i)=>{
+      const b = document.createElement('button');
+      b.className='opt';
+      b.innerHTML = typeof o==='string' ? o : `<span class="opt-zh">${o.zh}</span>${o.vi||''}`;
+      b.addEventListener('click', ()=>selectOption(i));
+      optWrap.appendChild(b);
+    });
+    container.querySelector('#nextBtn').addEventListener('click', ()=>{
+      idx++;
+      if(idx>=total) renderResult(); else renderQuestion();
+    });
+    container.querySelector('#skipBtn').addEventListener('click', ()=>{
+      idx++;
+      if(idx>=total) renderResult(); else renderQuestion();
+    });
+  }
+
+  function selectOption(i){
+    if(locked) return;
+    locked = true;
+    const it = items[idx];
+    const optEls = container.querySelectorAll('.opt');
+    optEls.forEach(el=>el.classList.add('locked'));
+    const fb = container.querySelector('#fb');
+    if(i===it.correctIndex){
+      score++;
+      optEls[i].classList.add('correct');
+      fb.className='feedback show ok';
+      fb.innerHTML = '✓ Chính xác! ' + (it.note||'');
+      addStamp(moduleId);
+    } else {
+      optEls[i].classList.add('wrong');
+      optEls[it.correctIndex].classList.add('correct');
+      fb.className='feedback show no';
+      fb.innerHTML = '✗ Chưa đúng. ' + (it.note||'');
+    }
+    container.querySelector('#nextBtn').disabled = false;
+    container.querySelector('#skipBtn').style.display='none';
+  }
+
+  function renderResult(){
+    const pct = Math.round((score/total)*100);
+    container.innerHTML = `
+      <div class="result">
+        <div class="result-seal"><span class="big">${pct}%</span><span class="small">及格印</span></div>
+        <h3>Bạn đúng ${score}/${total} câu</h3>
+        <p>${pct>=80?'Rất tốt! Bạn nắm chắc phần này.':pct>=50?'Khá ổn, luyện thêm một vòng nữa nhé.':'Cùng ôn lại nội dung bài giảng rồi thử lại nhé.'}</p>
+        <button class="btn" id="retryBtn">Làm lại</button>
+      </div>
+    `;
+    container.querySelector('#retryBtn').addEventListener('click', opts.onRestart || (()=>renderQuestion()));
+  }
+
+  renderQuestion();
+}
+
+/* ------------------------------------------------------------
+   MODULE 1: TỪ VỰNG
+------------------------------------------------------------ */
+function renderVocab(page){
+  page.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">词汇 · Từ vựng</span>
+      <h2>Từ vựng Bài 4–5–6</h2>
+      <div class="sub">Lật thẻ để ôn nghĩa, hoặc làm trắc nghiệm để kiểm tra trí nhớ.</div>
+    </div>
+    <div class="mode-row">
+      <button class="pill active" data-m="flash">🗂 Thẻ ghi nhớ</button>
+      <button class="pill" data-m="quiz">📝 Trắc nghiệm</button>
+    </div>
+    <div id="vocabBody"></div>
+  `;
+  page.querySelectorAll('.pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      page.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      if(p.dataset.m==='flash') renderFlash(); else renderVocabQuiz();
+    });
+  });
+  renderFlash();
+
+  function renderFlash(){
+    const body = document.getElementById('vocabBody');
+    let order = shuffle(VOCAB);
+    let i = 0;
+    body.innerHTML = `
+      <div class="flash-wrap">
+        <div class="flashcard" id="card">
+          <div class="flash-inner">
+            <div class="flash-face front">
+              <div class="flash-lesson" id="lessonTag"></div>
+              <div class="flash-hanzi" id="fHanzi"></div>
+              <div class="flash-hint">Chạm để xem nghĩa</div>
+            </div>
+            <div class="flash-face back">
+              <div class="flash-pinyin" id="fPinyin"></div>
+              <div class="flash-meaning" id="fMeaning"></div>
+            </div>
+          </div>
+        </div>
+        <div class="flash-controls">
+          <button class="icon-btn" id="prevBtn">←</button>
+          <button class="btn ghost" id="shuffleBtn">🔀 Xáo lại</button>
+          <button class="icon-btn" id="nextBtn">→</button>
+        </div>
+        <div class="prompt-note" id="counter"></div>
+      </div>
+    `;
+    function paint(){
+      const v = order[i];
+      document.getElementById('fHanzi').textContent = v.zh;
+      document.getElementById('fPinyin').textContent = v.py;
+      document.getElementById('fMeaning').textContent = v.vi;
+      document.getElementById('lessonTag').textContent = 'Bài ' + v.bai;
+      document.getElementById('counter').textContent = `Thẻ ${i+1} / ${order.length}`;
+      document.getElementById('card').classList.remove('flipped');
+    }
+    document.getElementById('card').addEventListener('click', function(){ this.classList.toggle('flipped'); });
+    document.getElementById('prevBtn').addEventListener('click', ()=>{ i=(i-1+order.length)%order.length; paint(); });
+    document.getElementById('nextBtn').addEventListener('click', ()=>{ i=(i+1)%order.length; paint(); });
+    document.getElementById('shuffleBtn').addEventListener('click', ()=>{ order=shuffle(VOCAB); i=0; paint(); });
+    paint();
+  }
+
+  function renderVocabQuiz(){
+    const body = document.getElementById('vocabBody');
+    const pool = pick(VOCAB, 10);
+    const items = pool.map(v=>{
+      const distractors = pick(VOCAB.filter(x=>x.zh!==v.zh), 3).map(x=>x.vi);
+      const options = shuffle([v.vi, ...distractors]);
+      return {
+        promptHanzi: v.zh,
+        prompt: `Từ này (${v.py}) có nghĩa là gì?`,
+        options,
+        correctIndex: options.indexOf(v.vi),
+        note: `${v.zh} (${v.py}) — Bài ${v.bai}`
+      };
+    });
+    runQuiz(body, items, 'tuvung', {onRestart: renderVocabQuiz});
+  }
+}
+
+/* ------------------------------------------------------------
+   MODULE 2: PINYIN
+------------------------------------------------------------ */
+function renderPinyin(page){
+  page.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">拼音 · Pinyin</span>
+      <h2>Quy tắc Pinyin</h2>
+      <div class="sub">Ôn quy tắc viết u→w, cách đọc "i" thành "ư", và dấu cách âm [’] — cùng bài nhận diện pinyin theo từ vựng.</div>
+    </div>
+    <div class="mode-row">
+      <button class="pill active" data-m="rule">📏 Quy tắc</button>
+      <button class="pill" data-m="match">🔤 Nhận diện Pinyin</button>
+    </div>
+    <div id="pyBody"></div>
+  `;
+  page.querySelectorAll('.pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      page.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      if(p.dataset.m==='rule') renderRuleQuiz(); else renderMatchQuiz();
+    });
+  });
+  renderRuleQuiz();
+
+  function renderRuleQuiz(){
+    const body = document.getElementById('pyBody');
+    const pool = pick(PINYIN_RULES, 8);
+    const items = pool.map(r=>{
+      const options = r.opts;
+      return { prompt: r.q, options, correctIndex: r.correct, note: r.note };
+    });
+    runQuiz(body, items, 'pinyin', {onRestart: renderRuleQuiz});
+  }
+
+  function renderMatchQuiz(){
+    const body = document.getElementById('pyBody');
+    const pool = pick(VOCAB, 8);
+    const items = pool.map(v=>{
+      const distractors = pick(VOCAB.filter(x=>x.zh!==v.zh), 3).map(x=>x.py);
+      const options = shuffle([v.py, ...distractors]);
+      return {
+        promptHanzi: v.zh,
+        prompt: 'Đâu là phiên âm pinyin đúng của từ này?',
+        options,
+        correctIndex: options.indexOf(v.py),
+        note: `${v.zh} = ${v.py} (${v.vi})`
+      };
+    });
+    runQuiz(body, items, 'pinyin', {onRestart: renderMatchQuiz});
+  }
+}
+
+/* ------------------------------------------------------------
+   MODULE 3: BÀI KHÓA
+------------------------------------------------------------ */
+function renderDialogue(page){
+  page.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">课文 · Bài khóa</span>
+      <h2>第四课：你去哪儿？</h2>
+      <div class="sub">Sắp xếp lại hội thoại đúng thứ tự, sau đó làm trắc nghiệm hiểu nội dung.</div>
+    </div>
+    <div class="mode-row">
+      <button class="pill active" data-m="order">🔀 Sắp xếp hội thoại</button>
+      <button class="pill" data-m="comp">❓ Hiểu nội dung</button>
+    </div>
+    <div id="dlgBody"></div>
+  `;
+  page.querySelectorAll('.pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      page.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      if(p.dataset.m==='order') renderOrder(); else renderComprehension();
+    });
+  });
+  renderOrder();
+
+  function renderOrder(){
+    const body = document.getElementById('dlgBody');
+    const shuffled = shuffle(DIALOGUE.map((d,i)=>({...d, origIndex:i})));
+    let placed = [];
+    body.innerHTML = `
+      <div class="prompt-note">Nhấn vào các câu theo đúng thứ tự hội thoại (A hỏi trước, B trả lời...).</div>
+      <div class="dlg-answer" id="answerZone"></div>
+      <div class="dlg-pool" id="poolZone"></div>
+      <div class="actions-row">
+        <button class="btn ghost" id="resetBtn">Làm lại</button>
+        <button class="btn" id="checkBtn">Kiểm tra</button>
+      </div>
+      <div class="feedback" id="dlgFb"></div>
+    `;
+    const poolZone = body.querySelector('#poolZone');
+    const answerZone = body.querySelector('#answerZone');
+    function paintPool(){
+      poolZone.innerHTML='';
+      shuffled.forEach((d,i)=>{
+        const chip = document.createElement('div');
+        chip.className = 'dlg-chip' + (placed.includes(i)?' placed':'');
+        chip.textContent = `${d.who}: ${d.zh}`;
+        if(!placed.includes(i)){
+          chip.addEventListener('click', ()=>{
+            placed.push(i);
+            paintPool(); paintAnswer();
+          });
+        }
+        poolZone.appendChild(chip);
+      });
+    }
+    function paintAnswer(){
+      answerZone.innerHTML = placed.length ? '' : '<span class="prompt-note">Chọn các câu ở khung dưới để thêm vào đây...</span>';
+      placed.forEach((pIdx, order)=>{
+        const d = shuffled[pIdx];
+        const chip = document.createElement('div');
+        chip.className='dlg-chip';
+        chip.textContent = `${order+1}. ${d.who}: ${d.zh}`;
+        chip.title = 'Nhấn để bỏ ra khỏi thứ tự';
+        chip.addEventListener('click', ()=>{
+          placed = placed.filter(x=>x!==pIdx);
+          paintPool(); paintAnswer();
+        });
+        answerZone.appendChild(chip);
+      });
+    }
+    paintPool(); paintAnswer();
+    body.querySelector('#resetBtn').addEventListener('click', ()=>{ placed=[]; paintPool(); paintAnswer(); body.querySelector('#dlgFb').className='feedback'; });
+    body.querySelector('#checkBtn').addEventListener('click', ()=>{
+      const fb = body.querySelector('#dlgFb');
+      if(placed.length !== DIALOGUE.length){
+        fb.className='feedback show no';
+        fb.innerHTML = 'Bạn cần xếp đủ cả ' + DIALOGUE.length + ' câu.';
+        return;
+      }
+      const correct = placed.every((pIdx, order)=> shuffled[pIdx].origIndex === order);
+      if(correct){
+        fb.className='feedback show ok';
+        fb.innerHTML = '✓ Chính xác! Đúng thứ tự hội thoại.';
+        addStamp('baikhoa');
+      } else {
+        fb.className='feedback show no';
+        fb.innerHTML = '✗ Chưa đúng thứ tự, hãy thử lại.';
+      }
+    });
+  }
+
+  function renderComprehension(){
+    const body = document.getElementById('dlgBody');
+    const questions = [
+      {prompt:'Hôm nay là thứ mấy?', options:['Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm'], correctIndex:1, note:'B trả lời: 今天星期二 (Hôm nay thứ Ba).'},
+      {prompt:'B định đi đâu?', options:['Ngân hàng','Bưu điện','Thiên An Môn','Trường học'], correctIndex:2, note:'B nói: 我去天安门 (Tôi đi Thiên An Môn).'},
+      {prompt:'A có đi cùng B không?', options:['Có, A cũng đi','Không, A về trường'], correctIndex:1, note:'A trả lời: 不去, 我回学校 (Không đi, tôi về trường).'},
+      {prompt:'Câu "你去不去?" thuộc loại câu hỏi nào?', options:['Câu hỏi chính phản (V-不-V)','Câu hỏi dùng 吗','Câu hỏi dùng 什么'], correctIndex:0, note:'去不去 = V + 不 + V, tương đương 你去吗?'},
+    ];
+    runQuiz(body, questions, 'baikhoa', {onRestart: renderComprehension});
+  }
+}
+
+/* ------------------------------------------------------------
+   MODULE 4: SỐ ĐẾM
+------------------------------------------------------------ */
+function renderNumbers(page){
+  page.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">数字 · Số đếm</span>
+      <h2>Cách ghép số tiếng Trung</h2>
+      <div class="sub">Luyện đọc số từ 11–19, 20–99, và 100–999 theo đúng quy tắc ghép trong bài giảng.</div>
+    </div>
+    <div class="mode-row">
+      <button class="pill active" data-r="teen">11–19</button>
+      <button class="pill" data-r="tens">20–99</button>
+      <button class="pill" data-r="hundreds">100–999</button>
+      <button class="pill" data-r="mix">Trộn tất cả</button>
+    </div>
+    <div id="numBody"></div>
+  `;
+  page.querySelectorAll('.pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      page.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      startNumberQuiz(p.dataset.r);
+    });
+  });
+  startNumberQuiz('teen');
+
+  function rangeFor(kind){
+    if(kind==='teen') return [11,19];
+    if(kind==='tens') return [20,99];
+    if(kind==='hundreds') return [100,999];
+    return [11,999];
+  }
+
+  function startNumberQuiz(kind){
+    const body = document.getElementById('numBody');
+    const [lo,hi] = rangeFor(kind);
+    const targets = new Set();
+    while(targets.size < 8){ targets.add(randInt(lo,hi)); }
+    const items = [...targets].map(n=>{
+      // distractors: nearby numbers in same general magnitude, correctly converted
+      const candidateOffsets = [1,-1,10,-10,2,-2].filter(o=> n+o>=lo && n+o<=hi && n+o!==n);
+      const offsets = shuffle(candidateOffsets).slice(0,3);
+      const distractNums = offsets.map(o=>n+o);
+      const options = shuffle([n, ...distractNums]).map(num=>({num, zh:numberToChinese(num)}));
+      return {
+        promptHanzi: null,
+        promptCustomNumber: n,
+        prompt: `Số này đọc thành tiếng Trung là gì?`,
+        options: options.map(o=>({zh:o.zh, vi:''})),
+        _optionNums: options.map(o=>o.num),
+        correctIndex: options.findIndex(o=>o.num===n),
+        note: `${n} = ${numberToChinese(n)}`
+      };
+    });
+    runNumberQuiz(body, items, kind);
+  }
+
+  function runNumberQuiz(container, items, kind){
+    let idx=0, score=0, locked=false;
+    const total = items.length;
+    function renderQ(){
+      locked=false;
+      const it = items[idx];
+      container.innerHTML = `
+        <div class="quiz-meta"><span>Câu ${idx+1} / ${total}</span><span class="score">Điểm: ${score}</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:${(idx/total)*100}%"></div></div>
+        <div class="num-display">${it.promptCustomNumber}</div>
+        <div class="num-range-tag">${it.prompt}</div>
+        <div class="options" id="optWrap"></div>
+        <div class="feedback" id="fb"></div>
+        <div class="actions-row">
+          <button class="btn ghost" id="skipBtn">Bỏ qua</button>
+          <button class="btn" id="nextBtn" disabled>Câu tiếp theo →</button>
+        </div>
+      `;
+      const optWrap = container.querySelector('#optWrap');
+      it.options.forEach((o,i)=>{
+        const b=document.createElement('button');
+        b.className='opt';
+        b.innerHTML = `<span class="opt-zh">${o.zh}</span>`;
+        b.addEventListener('click', ()=>select(i));
+        optWrap.appendChild(b);
+      });
+      container.querySelector('#nextBtn').addEventListener('click', ()=>{ idx++; idx>=total?renderResult():renderQ(); });
+      container.querySelector('#skipBtn').addEventListener('click', ()=>{ idx++; idx>=total?renderResult():renderQ(); });
+    }
+    function select(i){
+      if(locked) return; locked=true;
+      const it = items[idx];
+      const els = container.querySelectorAll('.opt');
+      els.forEach(e=>e.classList.add('locked'));
+      const fb = container.querySelector('#fb');
+      if(i===it.correctIndex){
+        score++; els[i].classList.add('correct');
+        fb.className='feedback show ok'; fb.innerHTML='✓ Chính xác! '+it.note;
+        addStamp('sodem');
+      } else {
+        els[i].classList.add('wrong'); els[it.correctIndex].classList.add('correct');
+        fb.className='feedback show no'; fb.innerHTML='✗ Chưa đúng. '+it.note;
+      }
+      container.querySelector('#nextBtn').disabled=false;
+      container.querySelector('#skipBtn').style.display='none';
+    }
+    function renderResult(){
+      const pct = Math.round((score/total)*100);
+      container.innerHTML = `
+        <div class="result">
+          <div class="result-seal"><span class="big">${pct}%</span><span class="small">及格印</span></div>
+          <h3>Bạn đúng ${score}/${total} câu</h3>
+          <p>${pct>=80?'Rất tốt! Bạn ghép số rất chuẩn.':pct>=50?'Khá ổn, thử lại để nhớ chắc hơn quy tắc nhé.':'Xem lại quy tắc ghép số rồi thử lại nhé.'}</p>
+          <button class="btn" id="retryBtn">Làm lại (số mới)</button>
+        </div>
+      `;
+      container.querySelector('#retryBtn').addEventListener('click', ()=>startNumberQuiz(kind));
+    }
+    renderQ();
+  }
+}
+
+/* ------------------------------------------------------------
+   MODULE 5: NGỮ PHÁP
+------------------------------------------------------------ */
+function renderGrammar(page){
+  page.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">语法 · Ngữ pháp</span>
+      <h2>Ba điểm ngữ pháp trọng tâm</h2>
+      <div class="sub">Câu hỏi chính phản (V-不-V), cấu trúc câu "是" (là), và các đại từ nghi vấn (什么/谁/哪儿/几).</div>
+    </div>
+    <div class="mode-row">
+      <button class="pill active" data-m="vbuv">V-不-V</button>
+      <button class="pill" data-m="shi">Câu 是</button>
+      <button class="pill" data-m="qw">Đại từ nghi vấn</button>
+    </div>
+    <div id="gpBody"></div>
+  `;
+  page.querySelectorAll('.pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      page.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      if(p.dataset.m==='vbuv') renderVbuv();
+      else if(p.dataset.m==='shi') renderShi();
+      else renderQW();
+    });
+  });
+  renderVbuv();
+
+  function renderVbuv(){
+    const body = document.getElementById('gpBody');
+    const pool = pick(VBUV, 8);
+    const items = pool.map(v=>{
+      const options = shuffle([v.correct, ...v.wrong]);
+      return {
+        prompt: `Chuyển câu hỏi dùng "吗" sau đây thành câu hỏi chính phản (V-不-V): <br><strong>${v.base}</strong> <span style="color:var(--ink-soft);font-weight:400;">(${v.vi})</span>`,
+        options,
+        correctIndex: options.indexOf(v.correct),
+        note: `Đáp án: ${v.correct}`
+      };
+    });
+    runQuiz(body, items, 'nguphap', {onRestart: renderVbuv});
+  }
+
+  function renderShi(){
+    const body = document.getElementById('gpBody');
+    const pool = pick(SHI_BANK, 7);
+    const items = pool.map(s=>{
+      const options = shuffle([s.correct, ...s.wrong]);
+      return {
+        prompt: `Chọn câu tiếng Trung đúng cho: <br><strong>"${s.vi}"</strong>`,
+        options,
+        correctIndex: options.indexOf(s.correct),
+        note: `Đáp án: ${s.correct}`
+      };
+    });
+    runQuiz(body, items, 'nguphap', {onRestart: renderShi});
+  }
+
+  function renderQW(){
+    const body = document.getElementById('gpBody');
+    const pool = pick(QWORDS, 8);
+    const items = pool.map(q=>{
+      const options = q.opts;
+      return {
+        promptHanzi: q.sentence,
+        prompt: `Điền đại từ nghi vấn thích hợp — nghĩa: "${q.vi}"`,
+        options,
+        correctIndex: options.indexOf(q.correct),
+        note: `Đáp án: ${q.correct}`
+      };
+    });
+    runQuiz(body, items, 'nguphap', {onRestart: renderQW});
+  }
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+renderStampRack();
+renderTabs();
+renderPage();
+</script>
+</body>
+</html>
